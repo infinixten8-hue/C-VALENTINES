@@ -17,7 +17,8 @@ noButton.addEventListener('click', () => {
 
     if (noCount >= 3) {
         funnyPic.style.display = 'block';
-        funnyPic.style.transform = `scale(${scale})`;
+        // We use translate(-50%, -50%) to keep it centered while scaling
+        funnyPic.style.transform = `translate(-50%, -50%) scale(${scale})`;
     }
 });
 
