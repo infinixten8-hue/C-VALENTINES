@@ -22,6 +22,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative; /* Needed for the floating funny pic */
     z-index: 10;
 }
 
@@ -51,6 +52,7 @@ body {
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    z-index: 20; /* Keep buttons above the funny pic if they overlap */
 }
 
 button {
@@ -65,22 +67,28 @@ button {
 #yes { background-color: #ff69b4; color: white; font-weight: bold; }
 #no { background-color: #ccc; color: #333; }
 
+/* FIXED FUNNY PIC POSITIONING */
 .funny-pic {
     display: none;
     width: 80%;
-    max-width: 150px;
-    margin: 20px auto;
+    max-width: 180px;
+    position: absolute; /* Takes it out of the layout flow */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers it exactly */
     border-radius: 10px;
     transition: transform 0.3s ease;
+    pointer-events: none; /* ALLOWS CLICKS TO PASS THROUGH TO BUTTONS */
+    z-index: 15;
+    opacity: 0.9;
 }
 
-/* RESULTS SECTION FIXES */
 .results {
     display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    z-index: 20;
+    z-index: 30;
 }
 
 .message {
@@ -105,8 +113,8 @@ button {
     background-color: #ff69b4;
     color: white;
     position: relative;
-    z-index: 5000; /* Stays above everything */
-    pointer-events: auto;
+    z-index: 5000;
+    cursor: pointer;
 }
 
 .heart {
@@ -114,7 +122,7 @@ button {
     bottom: -10px;
     animation: floatUp 4s linear forwards;
     z-index: 999;
-    pointer-events: none; /* Clicks pass through to the button */
+    pointer-events: none;
     user-select: none;
 }
 
